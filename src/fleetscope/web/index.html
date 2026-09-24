@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FleetScope · NYC pickup forecasts</title>
+  <meta name="description" content="Explore NYC yellow-taxi pickup forecasts on an interactive map. A student machine-learning portfolio project with real TLC data, clear baselines, and honest evaluation.">
+  <meta name="theme-color" content="#4566ec">
+  <link rel="icon" href="./static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./static/style.css">
+  <script src="./static/app.js" defer></script>
+</head>
+<body>
+  <header><a class="brand" href="./" aria-label="FleetScope home"><span class="mark">F</span>FleetScope<span class="nyc">NYC</span></a><div class="header-note"><span class="dot"></span> HISTORICAL REPLAY <a id="project-link" href="/docs">API docs ↗</a></div></header>
+  <main>
+    <div class="intro"><div><p class="eyebrow">YELLOW TAXI · NEXT-HOUR PICKUPS</p><h1>A city in motion.<br><span>A clearer hour ahead.</span></h1><p class="description">Explore where recorded taxi pickups are expected next,<br class="desktop"> and see how those forecasts compare with what happened.</p></div><div class="dataset"><span>STARTER BENCHMARK</span><strong>January — March 2025</strong><small id="dataset-note">Loading evaluated data…</small></div></div>
+    <div id="error" role="alert" hidden></div>
+    <section class="workspace" aria-label="Historical replay dashboard">
+      <div class="map-panel"><div class="map-toolbar"><div><p class="eyebrow">NEW YORK CITY</p><h2 id="display-hour">Loading replay…</h2></div><div class="segmented" role="group" aria-label="Map metric"><button class="active" data-layer="predicted_pickups" aria-pressed="true">Predicted</button><button data-layer="recorded_pickups" aria-pressed="false">Recorded</button><button data-layer="error" aria-pressed="false">Error</button></div></div>
+        <div class="map-wrap"><svg id="map" viewBox="0 0 820 650" role="img" aria-label="Official NYC taxi zones; select a zone to inspect pickups"></svg><div class="map-caption">Official TLC taxi-zone boundaries<br><span>Five boroughs · Select a zone to explore</span></div><div class="map-controls"><button id="zoom-in" aria-label="Zoom in">+</button><button id="zoom-out" aria-label="Zoom out">−</button><button id="reset-map" aria-label="Reset map view">↺</button></div></div>
+        <div class="legend"><span id="legend-label">Predicted pickups/hour</span><span id="legend-min">0</span><div id="legend-gradient"></div><span id="legend-max">—</span></div>
+        <div class="timeline"><div class="time-label"><span>EXPLORE THE HELD-OUT PERIOD</span><strong id="hour-index">—</strong></div><div class="scrubber"><button id="previous" aria-label="Previous hour">←</button><input id="time" type="range" min="0" max="0" value="0" aria-label="Historical target hour"><button id="next" aria-label="Next hour">→</button></div><div id="examples" class="examples"></div><p id="example-note"></p></div>
+      </div>
+      <aside>
+        <div class="summary-card"><p class="eyebrow">SELECTED HOUR · ALL MODELED ZONES</p><div class="headline"><strong id="total-predicted">—</strong><span>predicted pickups</span></div><div class="comparison"><div><strong id="total-recorded">—</strong><span>recorded · hindsight</span></div><div><strong id="hour-mae">—</strong><span>MAE · pickups/zone</span></div></div></div>
+        <div class="zone-card"><div class="card-heading"><p class="eyebrow">ZONE EXPLORER</p><span id="zone-borough">SELECT A ZONE</span></div><h2 id="zone-name">Find your next focus.</h2><label class="sr-only" for="zone-select">Select a taxi zone</label><select id="zone-select"><option value="">Select a zone from the map or list</option></select><div id="zone-values" hidden><div class="zone-stats"><div><strong id="zone-forecast"></strong><span>predicted</span></div><div><strong id="zone-recorded"></strong><span>recorded</span></div><div><strong id="zone-baseline"></strong><span>previous week</span></div></div><p class="mini-label">PRIOR 24 AVAILABLE HOURS · RECORDED PICKUPS</p><svg id="trend" viewBox="0 0 300 85" role="img" aria-label="Recorded pickup trend"></svg></div><p id="zone-hint">Choose an area to compare its forecast, recorded pickups, and recent history.</p></div>
+        <div class="ranking-card"><div class="card-heading"><h2>Busiest next hour</h2><span>PREDICTED</span></div><ol id="ranking"></ol></div>
+      </aside>
+    </section>
+    <section class="benchmark"><div><p class="eyebrow">HOW WELL DOES IT WORK?</p><h2>Compared with simple forecasting rules.</h2><p>Every method is tested on the same later dates.<br><strong>MAE</strong> is the average error in pickups per zone, per hour.<br><strong>WAPE</strong> compares total absolute error with total recorded pickups.<br>Lower scores are better. These results cover March 15–31, 2025.</p></div><div class="table-wrap"><table><thead><tr><th>Forecast method</th><th>MAE <small>pickups/zone-hour</small></th><th>WAPE</th></tr></thead><tbody id="metrics"></tbody></table></div></section>
+    <footer><p><strong>A replay of the past.</strong> This demo uses saved forecasts and recorded yellow-taxi pickups. Actual counts are shown to help check the predictions. The model assumes an hourly data feed; public TLC files arrive later. Pickup records do not tell us how many people could not find a taxi.</p><div><a href="https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page" target="_blank" rel="noreferrer">NYC TLC source ↗</a><a href="/api/quality">Data quality ↗</a><a href="/api/metadata">About this model run ↗</a></div></footer>
+  </main>
+</body>
+</html>

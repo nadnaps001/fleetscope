@@ -1,0 +1,17 @@
+{
+  "name": "yellow-2025-q1-starter",
+  "months": ["2025-01", "2025-02", "2025-03"],
+  "timezone": "America/New_York",
+  "train_start": "2025-01-08T00:00:00-05:00",
+  "validation_start": "2025-03-01T00:00:00-05:00",
+  "test_start": "2025-03-15T00:00:00-04:00",
+  "test_end": "2025-04-01T00:00:00-04:00",
+  "observation_delay_hours": 0,
+  "seed": 42,
+  "n_estimators": 180,
+  "learning_rate": 0.06,
+  "num_leaves": 31,
+  "n_jobs": 4,
+  "retraining": "none; models and seasonal baseline frozen at validation_start",
+  "evaluation_status": "starter benchmark; not a full seasonal evaluation"
+}
