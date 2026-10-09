@@ -11,8 +11,7 @@
 Taxi activity changes throughout the day. A busy area at lunchtime may look very different late at night. FleetScope uses past pickup patterns to estimate what the next hour might look like.
 
 The dashboard lets you move through historical hours, click a taxi zone, and compare the model's prediction with the number of pickups that actually happened. It also shows where the model made larger mistakes.
-
-This is a student portfolio project built around public data, reproducible experiments, and clear explanations. The demo replays March 2025; it is not a live taxi service.
+The demo replays March 2025; it is not a live taxi service.
 
 ## Try it in one minute
 
@@ -49,7 +48,7 @@ These scores cover **March 15–31, 2025**, using the same 106,634 eligible zone
 - **WAPE** is total absolute prediction error divided by total recorded pickups. It is an error measure, not an accuracy percentage.
 - The selected model reduces MAE by **12.88%** compared with the baseline chosen on validation data.
 
-### What stood out
+### Some observations
 
 Recent information matters. When pickup observations were delayed by two hours, the model's MAE rose from **3.82 to 4.38**, leaving very little improvement over the seasonal baseline. That is a useful result: a forecasting model depends on the quality and timeliness of its inputs.
 
